@@ -12,7 +12,9 @@ pico_sdk_init()
 # rest of your project
 add_executable(mignon-grind-by-weight
     src/main.c
-)
+    deps/exceptions4c/lite/src/e4c_lite.c)
+
+target_include_directories(mignon-grind-by-weight PRIVATE deps/)
 
 target_link_libraries(mignon-grind-by-weight pico_stdlib)
 

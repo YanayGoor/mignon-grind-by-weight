@@ -1,0 +1,4 @@
+[submodule "deps/exceptions4c"]
+	path = deps/exceptions4c
+	url = git@github.com:guillermocalvo/exceptions4c.git
+	branch = master
