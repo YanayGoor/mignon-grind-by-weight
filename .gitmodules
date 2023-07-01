@@ -2,3 +2,6 @@
 	path = deps/exceptions4c
 	url = git@github.com:guillermocalvo/exceptions4c.git
 	branch = master
+[submodule "deps/hx711-pico-c"]
+	path = deps/hx711-pico-c
+	url = https://github.com/endail/hx711-pico-c

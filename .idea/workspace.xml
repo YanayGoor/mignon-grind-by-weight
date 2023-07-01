@@ -20,7 +20,7 @@
       <config projectName="mignon-grind-by-weight" targetName="bs2_default" />
     </generated>
   </component>
-  <component name="CMakeSettings">
+  <component name="CMakeSettings" AUTO_RELOAD="true">
     <configurations>
       <configuration PROFILE_NAME="Debug" ENABLED="true" CONFIG_NAME="Debug">
         <ADDITIONAL_GENERATION_ENVIRONMENT>
@@ -33,12 +33,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e640c18e-2d8b-4039-8b81-067471bc6938" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitmodules" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/deps/exceptions4c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/estimators/median.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/deps/hx711-pico-c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/estimators/linear_fitting.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/estimators/linear_fitting.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/estimators/median.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitmodules" beforeDir="false" afterPath="$PROJECT_DIR$/.gitmodules" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/deps/exceptions4c" beforeDir="false" afterPath="$PROJECT_DIR$/deps/exceptions4c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/estimators/median.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/estimators/median.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.c" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -49,6 +53,7 @@
   <component name="ClangdSettings">
     <option name="clangTidyViaClangd" value="false" />
     <option name="formatViaClangd" value="false" />
+    <option name="clangWarnings" value="-Wno-unused-variable,-Wno-infinite-recursion,-Wno-array-bounds,-Werror=implicit-function-declaration,-Wshadow,-Wno-shadow-field-in-constructor-modified,-Wno-shadow-ivar,-Wuninitialized,-Wunused-label,-Wunused-lambda-capture,-Wno-dangling-else" />
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
   <component name="ExternalProjectsData">
@@ -57,10 +62,13 @@
     </projectState>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../pico/pico-sdk" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
+  </component>
+  <component name="OCResolveContextSettings">
+    <option name="configuration" value="0-Debug-mignon-grind-by-weight" />
   </component>
   <component name="ProjectApplicationVersion">
     <option name="ide" value="CLion" />
@@ -79,26 +87,35 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.cidr.known.project.marker": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
     "cf.advertisement.text.has.clang-format": "true",
     "cf.first.check.clang-format": "false",
     "cidr.known.project.marker": "true",
-    "last_opened_file_path": "/Users/yanaygoor/mignon-grind-by-weight",
+    "last_opened_file_path": "/home/yanay/mignon-grind-by-weight/src",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
-    "settings.editor.selected.configurable": "com.jetbrains.cidr.embedded.config",
+    "settings.editor.selected.configurable": "preferences.sourceCode.C/C++",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/cmakes" />
+    <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src" />
+      <recent name="$PROJECT_DIR$/include" />
+      <recent name="$PROJECT_DIR$/src/estimators" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src" />
+      <recent name="$PROJECT_DIR$/src/estimators" />
+      <recent name="$PROJECT_DIR$/include/mignonbyweight/estimators" />
+      <recent name="$PROJECT_DIR$/include/mignonbyweight" />
+      <recent name="$PROJECT_DIR$/cmakes" />
     </key>
   </component>
-  <component name="RunManager" selected="CMake Application.mignon-grind-by-weight">
+  <component name="RunManager" selected="OpenOCD Download &amp; Run.ELF2UF2Build">
     <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
       <method v="2">
         <option name="CLION.EXTERNAL.BUILD" enabled="true" />
@@ -192,6 +209,26 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/src/estimators/median.c</url>
+          <line>36</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+    <watches-manager>
+      <configuration name="com.jetbrains.cidr.embedded.openocd.conf.type">
+        <watch expression="estimator-&gt;samples_buff[2]" language="ObjectiveC" />
+        <watch expression="estimator-&gt;samples_buff[1]" language="ObjectiveC" />
+        <watch expression="estimator-&gt;samples_buff[0]" language="ObjectiveC" />
+        <watch expression="estimator-&gt;samples_buff[3]" language="ObjectiveC" />
+        <watch expression="estimator-&gt;samples_buff[4]" language="ObjectiveC" />
+      </configuration>
+    </watches-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
