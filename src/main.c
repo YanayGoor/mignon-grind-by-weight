@@ -10,6 +10,7 @@
 #include <hx711.h>
 #include <common.h>
 
+#include "estimators/linear_fitting.h"
 #include "estimators/median.h"
 
 
@@ -38,24 +39,37 @@ int main() {
 #ifndef PICO_DEFAULT_LED_PIN
 #warning blink example requires a board with a regular LED
 #else
-    bool is_tared = false;
     float base_value = 0;
 
-    struct median_estimator* median_estimator = median_estimator_alloc(200);
+    struct median_estimator* median_estimator = median_estimator_alloc(100);
+    while (!median_estimator_is_saturated(median_estimator)) {
+        base_value = median_estimator_feed(median_estimator, hx711_get_value(&hx));
+    }
 
-    while (true) {
-        float sample = hx711_get_value(&hx);
-        float median = median_estimator_feed(median_estimator, sample);
+    printf("tared!\n");
 
-        if (!is_tared && median_estimator_is_saturated(median_estimator)) {
-            base_value = median;
-            is_tared = true;
-        }
-
-        if (is_tared) {
-            printf("%f\n", -(median - base_value));
+    uint samples_above_threshold = 0;
+    while (samples_above_threshold < 100) {
+        if ((base_value - hx711_get_value(&hx)) > 35000) {
+            samples_above_threshold++;
+        } else {
+            samples_above_threshold = 0;
         }
     }
+
+    printf("handle on!\n");
+
+    struct linear_fitting_estimator* linear_fitting_estimator = linear_fitting_estimator_alloc(50);
+    linear_fitting_estimator_feed(linear_fitting_estimator, base_value - hx711_get_value(&hx));\
+
+    float estimate = 0;
+    while (estimate < 38000) {
+        float sample = base_value - hx711_get_value(&hx);
+        estimate = linear_fitting_estimator_feed(linear_fitting_estimator, sample);
+    }
+
+    printf("DONE! %f\n", estimate);
+
 #endif
     e4c_context_end();
 }

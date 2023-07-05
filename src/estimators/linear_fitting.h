@@ -5,8 +5,9 @@
 
 struct linear_fitting_estimator;
 
-void linear_fitting_alloc(struct median_estimator**, size_t samples_count);
-void linear_fitting_free(struct median_estimator*);
-float linear_fitting_feed(float sample);
+struct linear_fitting_estimator* linear_fitting_estimator_alloc(size_t samples_count);
+void linear_fitting_estimator_free(struct linear_fitting_estimator*);
+float linear_fitting_estimator_feed(struct linear_fitting_estimator*, float sample);
+bool linear_fitting_estimator_is_saturated(struct linear_fitting_estimator*);
 
 #endif //LINEAR_FITTING_ESTIMATOR_H

@@ -33,16 +33,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e640c18e-2d8b-4039-8b81-067471bc6938" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/deps/hx711-pico-c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/estimators/linear_fitting.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/estimators/linear_fitting.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/estimators/median.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitmodules" beforeDir="false" afterPath="$PROJECT_DIR$/.gitmodules" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/linear_fitting_estimator.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/deps/exceptions4c" beforeDir="false" afterPath="$PROJECT_DIR$/deps/exceptions4c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/estimators/median.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/estimators/median.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/estimators/linear_fitting.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/linear_fitting_estimator.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/estimators/linear_fitting.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/estimators/median.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/estimators/median.h" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.c" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -108,8 +106,8 @@
       <recent name="$PROJECT_DIR$/src/estimators" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src" />
       <recent name="$PROJECT_DIR$/src/estimators" />
+      <recent name="$PROJECT_DIR$/src" />
       <recent name="$PROJECT_DIR$/include/mignonbyweight/estimators" />
       <recent name="$PROJECT_DIR$/include/mignonbyweight" />
       <recent name="$PROJECT_DIR$/cmakes" />
@@ -214,9 +212,9 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/src/estimators/median.c</url>
-          <line>36</line>
-          <option name="timeStamp" value="4" />
+          <url>file://$PROJECT_DIR$/src/estimators/linear_fitting.c</url>
+          <line>52</line>
+          <option name="timeStamp" value="5" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

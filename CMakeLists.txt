@@ -12,8 +12,9 @@ pico_sdk_init()
 # rest of your project
 add_executable(mignon-grind-by-weight
     src/main.c
-    src/estimators/median.c
     src/estimators/linear_fitting.c
+    src/estimators/median.c
+    deps/pico-ssd1306/ssd1306.c
     deps/exceptions4c/src/e4c.c
     deps/hx711-pico-c/src/common.c
     deps/hx711-pico-c/src/hx711.c
@@ -24,8 +25,9 @@ add_executable(mignon-grind-by-weight
 target_include_directories(mignon-grind-by-weight PRIVATE deps/)
 target_include_directories(mignon-grind-by-weight PRIVATE deps/exceptions4c/src)
 target_include_directories(mignon-grind-by-weight PRIVATE deps/hx711-pico-c/include)
+target_include_directories(mignon-grind-by-weight PRIVATE deps/pico-ssd1306)
 target_include_directories(mignon-grind-by-weight PRIVATE include/)
 
-target_link_libraries(mignon-grind-by-weight pico_stdlib hardware_dma hardware_pio)
+target_link_libraries(mignon-grind-by-weight pico_stdlib hardware_dma hardware_pio hardware_i2c)
 
 pico_add_extra_outputs(mignon-grind-by-weight)

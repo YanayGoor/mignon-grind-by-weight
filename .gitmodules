@@ -5,3 +5,6 @@
 [submodule "deps/hx711-pico-c"]
 	path = deps/hx711-pico-c
 	url = https://github.com/endail/hx711-pico-c
+[submodule "deps/pico-ssd1306"]
+	path = deps/pico-ssd1306
+	url = git@github.com:daschr/pico-ssd1306.git
