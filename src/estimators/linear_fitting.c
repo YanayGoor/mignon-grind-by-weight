@@ -1,28 +1,11 @@
 #include <pico/stdlib.h>
 #include <malloc.h>
+#include "linear_fitting.h"
 
-struct linear_fitting_estimator {
-    size_t num_total_samples;
-    size_t samples_buff_size;
-    float samples_buff[];
-};
-
-struct linear_fitting_estimator* linear_fitting_estimator_alloc(size_t samples_count) {
-    struct linear_fitting_estimator* estimator = NULL;
-
-    assert(samples_count > 0);
-
-    estimator = malloc(sizeof(estimator) + sizeof(*estimator->samples_buff) * samples_count);
+void linear_fitting_estimator_init(struct linear_fitting_estimator* estimator, float* buff, size_t buff_size) {
     estimator->num_total_samples = 0;
-    estimator->samples_buff_size = samples_count;
-
-    return estimator;
-}
-
-void linear_fitting_estimator_free(struct linear_fitting_estimator* estimator) {
-    assert(estimator);
-
-    free(estimator);
+    estimator->samples_buff_size = buff_size;
+    estimator->samples_buff = buff;
 }
 
 static void linear_fitting_estimator_push_sample(struct linear_fitting_estimator* estimator, float sample) {

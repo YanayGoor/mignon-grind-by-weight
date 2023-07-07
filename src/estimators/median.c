@@ -2,12 +2,7 @@
 #include <malloc.h>
 #include <stdlib.h>
 #include <memory.h>
-
-struct median_estimator {
-    size_t num_total_samples;
-    size_t samples_buff_size;
-    float samples_buff[];
-};
+#include "median.h"
 
 #define num_samples(estimator) (MIN((estimator)->num_total_samples, (estimator)->samples_buff_size))
 #define samples_start_idx(estimator) ((estimator)->num_total_samples > (estimator)->num_total_samples ? (estimator)->num_total_samples % (estimator)->num_total_samples : 0)
@@ -43,22 +38,10 @@ static float median_estimator_calc_median(struct median_estimator* estimator) {
     return (buff[median_idx - 1] + buff[median_idx]) / 2;
 }
 
-struct median_estimator* median_estimator_alloc(size_t samples_count) {
-    struct median_estimator* estimator = NULL;
-
-    assert(samples_count > 0);
-
-    estimator = malloc(sizeof(estimator) + sizeof(*estimator->samples_buff) * samples_count);
+void median_estimator_init(struct median_estimator* estimator, float* buff, size_t buff_size) {
     estimator->num_total_samples = 0;
-    estimator->samples_buff_size = samples_count;
-
-    return estimator;
-}
-
-void median_estimator_free(struct median_estimator* estimator) {
-    assert(estimator);
-
-    free(estimator);
+    estimator->samples_buff_size = buff_size;
+    estimator->samples_buff = buff;
 }
 
 float median_estimator_feed(struct median_estimator* estimator, float sample) {
