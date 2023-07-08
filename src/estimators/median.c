@@ -21,6 +21,8 @@ static sample_t median_estimator_calc_median(struct median_estimator *estimator)
 
 	sample_buffer_copy(&estimator->sample_buffer, buff, sample_count);
 
+    // using quick sort is not the most efficient way to do this for large buffers,
+    // a better solution would be to hold a rb tree with sizes and a linked list for removal.
 	qsort(buff, sample_count, sizeof(sample_t), sample_compare);
 
 	return (sample_t){
