@@ -1,16 +1,18 @@
 #ifndef MEDIAN_ESTIMATOR_H
 #define MEDIAN_ESTIMATOR_H
 
+#include <mignon-grind-by-weight/types.h>
+
 #include <pico/stdlib.h>
 
+#include "../sample_buffer/sample_buffer.h"
+
 struct median_estimator {
-    size_t num_total_samples;
-    size_t samples_buff_size;
-    float* samples_buff;
+	struct sample_buffer sample_buffer;
 };
 
-void median_estimator_init(struct median_estimator*, float* buff, size_t buff_size);
-float median_estimator_feed(struct median_estimator*, float sample);
-bool median_estimator_is_saturated(struct median_estimator*);
+void median_estimator_init(struct median_estimator *, sample_t *buff, size_t buff_size);
+sample_t median_estimator_feed(struct median_estimator *, sample_t sample);
+bool median_estimator_is_saturated(struct median_estimator *);
 
-#endif //MEDIAN_ESTIMATOR_H
+#endif // MEDIAN_ESTIMATOR_H

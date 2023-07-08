@@ -14,18 +14,16 @@ add_executable(mignon-grind-by-weight
     src/main.c
     src/estimators/linear_fitting.c
     src/estimators/median.c
-    deps/pico-ssd1306/ssd1306.c
     deps/exceptions4c/lite/src/e4c_lite.c
     deps/hx711-pico-c/src/common.c
     deps/hx711-pico-c/src/hx711.c
-    deps/hx711-pico-c/src/util.c)
-
-#target_compile_definitions(mignon-grind-by-weight PRIVATE E4C_THREADSAFE)
+    deps/hx711-pico-c/src/util.c
+    src/sample_buffer/sample_buffer.c
+    src/scale.c)
 
 target_include_directories(mignon-grind-by-weight PRIVATE deps/)
 target_include_directories(mignon-grind-by-weight PRIVATE deps/exceptions4c/lite/src/)
 target_include_directories(mignon-grind-by-weight PRIVATE deps/hx711-pico-c/include)
-target_include_directories(mignon-grind-by-weight PRIVATE deps/pico-ssd1306)
 target_include_directories(mignon-grind-by-weight PRIVATE include/)
 
 target_link_libraries(mignon-grind-by-weight pico_stdlib hardware_dma hardware_pio hardware_i2c)

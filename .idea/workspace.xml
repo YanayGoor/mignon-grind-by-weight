@@ -33,8 +33,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e640c18e-2d8b-4039-8b81-067471bc6938" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/include/mignon-grind-by-weight/types.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/sample_buffer/sample_buffer.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/sample_buffer/sample_buffer.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/scale.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/scale.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.clang-format" beforeDir="false" afterPath="$PROJECT_DIR$/.clang-format" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitmodules" beforeDir="false" afterPath="$PROJECT_DIR$/.gitmodules" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/deps/exceptions4c" beforeDir="false" afterPath="$PROJECT_DIR$/deps/exceptions4c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/deps/hx711-pico-c" beforeDir="false" afterPath="$PROJECT_DIR$/deps/hx711-pico-c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/deps/pico-ssd1306" beforeDir="false" afterPath="$PROJECT_DIR$/deps/pico-ssd1306" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/estimators/linear_fitting.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/estimators/linear_fitting.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/estimators/linear_fitting.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/estimators/linear_fitting.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/estimators/median.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/estimators/median.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/estimators/median.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/estimators/median.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.c" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -84,13 +98,13 @@
     "cf.advertisement.text.has.clang-format": "true",
     "cf.first.check.clang-format": "false",
     "cidr.known.project.marker": "true",
-    "git-widget-placeholder": "feature/add-exceptions",
+    "git-widget-placeholder": "feature/basic-functionality",
     "last_opened_file_path": "/home/yanay/mignon-grind-by-weight/src",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
-    "settings.editor.selected.configurable": "preferences.sourceCode.C/C++",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -101,11 +115,11 @@
       <recent name="$PROJECT_DIR$/src/estimators" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/include/mignon-grind-by-weight" />
+      <recent name="$PROJECT_DIR$/include" />
       <recent name="$PROJECT_DIR$/src/estimators" />
       <recent name="$PROJECT_DIR$/src" />
       <recent name="$PROJECT_DIR$/include/mignonbyweight/estimators" />
-      <recent name="$PROJECT_DIR$/include/mignonbyweight" />
-      <recent name="$PROJECT_DIR$/cmakes" />
     </key>
   </component>
   <component name="RunManager" selected="OpenOCD Download &amp; Run.ELF2UF2Build">
@@ -149,11 +163,18 @@
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
+    <configuration name="format" type="MAKEFILE_TARGET_RUN_CONFIGURATION" factoryName="Makefile">
+      <makefile filename="$PROJECT_DIR$/Makefile" target="format" workingDirectory="" arguments="">
+        <envs />
+      </makefile>
+      <method v="2" />
+    </configuration>
     <configuration name="ELF2UF2Build" type="com.jetbrains.cidr.embedded.openocd.conf.type" factoryName="com.jetbrains.cidr.embedded.openocd.conf.factory" nameIsGenerated="true" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="mignon-grind-by-weight" TARGET_NAME="ELF2UF2Build" CONFIG_NAME="Debug" version="1" RUN_TARGET_PROJECT_NAME="mignon-grind-by-weight" RUN_TARGET_NAME="mignon-grind-by-weight">
       <openocd version="1" gdb-port="3333" telnet-port="4444" board-config="target/rp2040-clion.cfg" reset-type="INIT" download-type="ALWAYS">
         <debugger kind="GDB" isBundled="true" />
       </openocd>
       <method v="2">
+        <option name="RunConfigurationTask" enabled="true" run_configuration_name="format" run_configuration_type="MAKEFILE_TARGET_RUN_CONFIGURATION" />
         <option name="CLION.COMPOUND.BUILD" enabled="true" />
       </method>
     </configuration>
@@ -165,6 +186,7 @@
       <item itemvalue="CMake Application.bs2_default_padded_checksummed_asm" />
       <item itemvalue="CMake Application.cyw43_driver_picow_cyw43_bus_pio_spi_pio_h" />
       <item itemvalue="CMake Application.PioasmBuild" />
+      <item itemvalue="Makefile Target.format" />
       <item itemvalue="OpenOCD Download &amp; Run.ELF2UF2Build" />
     </list>
   </component>
