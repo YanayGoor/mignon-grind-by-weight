@@ -6,13 +6,14 @@
 #include "estimators/median.h"
 #include "scale.h"
 
-#define HANDLE_WEIGHT			   (354)
-#define TARGET_COFFEE_WEIGHT	   (12)
-#define HANDLE_THRESHOLD		   (HANDLE_WEIGHT / 2)
+#define HANDLE_WEIGHT		 (354)
+#define TARGET_COFFEE_WEIGHT (12)
+#define HANDLE_THRESHOLD	 (HANDLE_WEIGHT / 2)
+
 #define LINEAR_ESTIMATOR_BUFF_SIZE (100)
 
-#define US_GET_SEC(val)			   ((val) / 1000000)
-#define US_GET_MSEC(val)		   ((val)*1000 / 1000000)
+#define US_GET_SEC(val)	 ((val) / 1000000)
+#define US_GET_MSEC(val) ((val)*1000 / 1000000)
 
 int main() {
 	stdio_init_all();
@@ -49,7 +50,7 @@ int main() {
 
 				linear_fitting_estimator_feed(&time_estimator, weight);
 				uint64_t time_left = get_estimated_time_until_value(&time_estimator, TARGET_COFFEE_WEIGHT);
-				printf("time left %lld.%lld\n", US_GET_SEC(time_left), US_GET_MSEC(time_left));
+				printf("time left %lld.%lld weight %f\n", US_GET_SEC(time_left), US_GET_MSEC(time_left), weight.value);
 			}
 
 			printf("DONE! waiting for handle to be removed\n");
@@ -64,6 +65,4 @@ int main() {
 			printf("Removed from scale, resetting\n");
 		};
 	}
-
-#endif
 }
