@@ -9,7 +9,7 @@
 #include "estimators/linear_fitting.h"
 #include "estimators/median.h"
 
-#define SCALE_MIN_THRESHOLD		(15)
+#define SCALE_MIN_THRESHOLD		(30)
 #define SCALE_ZERO_SAMPLE_COUNT (SCALE_SAMPLES_PER_SECONDS / 2)
 
 #define HX711_CLK_PIN	 (14)
@@ -34,14 +34,7 @@ void scale_zero(struct scale *scale) {
 sample_t scale_read_sample(struct scale *scale) {
 	sample_t raw_sample = scale_read_raw_sample(scale);
 	sample_t sample = {.value = (raw_sample.value - scale->base) * scale->multiplier, .time = raw_sample.time};
-	if (sample.value > scale->last_sample.value + scale->cutoff) {
-		sample.value = scale->last_sample.value + scale->cutoff;
-	}
-	if (sample.value < scale->last_sample.value - scale->cutoff) {
-		sample.value = scale->last_sample.value - scale->cutoff;
-	}
 	printf("sample %fg\n", sample.value);
-	scale->last_sample = sample;
 	if (sample.value < -SCALE_MIN_THRESHOLD) {
 		E4C_THROW(ObjectRemovedFromScaleException, "object removed from scale after zeroing");
 	}
@@ -68,7 +61,4 @@ void scale_init(struct scale *scale) {
 	scale_zero(scale);
 
 	scale->multiplier = HX711_MULTIPLIER;
-	scale->last_sample.value = 0;
-	scale->last_sample.time = get_absolute_time();
-	scale->cutoff = 100;
 }

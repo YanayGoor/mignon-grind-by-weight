@@ -15,8 +15,6 @@ struct scale {
 	hx711_config_t hxcfg;
 	float base;
 	float multiplier;
-	sample_t last_sample;
-	float cutoff;
 };
 
 void scale_zero(struct scale *scale);

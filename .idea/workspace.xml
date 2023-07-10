@@ -38,7 +38,6 @@
       <change beforePath="$PROJECT_DIR$/deps/hx711-pico-c" beforeDir="false" afterPath="$PROJECT_DIR$/deps/hx711-pico-c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/estimators/linear_fitting.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/estimators/linear_fitting.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/estimators/linear_fitting.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/estimators/linear_fitting.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/estimators/median.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/estimators/median.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/scale.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/scale.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/scale.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/scale.h" afterDir="false" />

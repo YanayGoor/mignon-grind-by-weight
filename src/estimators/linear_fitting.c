@@ -52,10 +52,6 @@ bool linear_fitting_estimator_is_saturated(struct linear_fitting_estimator *esti
 	return estimator->sample_buffer.total_sample_count >= estimator->sample_buffer.buff_size;
 }
 
-absolute_time_t get_estimated_time_until_value(struct linear_fitting_estimator *estimator, float value) {
-	uint64_t estimate = (value - estimator->params.a) / estimator->params.b;
-	if (estimate > INT64_MAX) {
-		return at_the_end_of_time;
-	}
-	return from_us_since_boot(estimate);
+uint64_t get_estimated_time_until_value(struct linear_fitting_estimator *estimator, float value) {
+	return (value - estimator->params.a) / estimator->params.b;
 }

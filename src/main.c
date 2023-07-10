@@ -7,28 +7,24 @@
 #include "scale.h"
 
 #define HANDLE_WEIGHT			   (354)
-#define TARGET_COFFEE_WEIGHT	   (120)
+#define TARGET_COFFEE_WEIGHT	   (12)
 #define HANDLE_THRESHOLD		   (HANDLE_WEIGHT / 2)
-#define LINEAR_ESTIMATOR_BUFF_SIZE (10)
+#define LINEAR_ESTIMATOR_BUFF_SIZE (100)
+#define US_GET_SEC(val)				   ((val) / 1000000)
+#define US_GET_MSEC(val) ((val) * 1000 / 1000000)
 
 int main() {
 	stdio_init_all();
 
 	struct scale scale = {0};
-
 	scale_init(&scale);
-
-#ifndef PICO_DEFAULT_LED_PIN
-#warning blink example requires a board with a regular LED
-#else
 
 	while (true) {
 		E4C_TRY {
 			scale_zero(&scale);
 
-			scale.cutoff = 300;
 			uint samples_above_threshold = 0;
-			while (samples_above_threshold < SCALE_SAMPLES_PER_SECONDS / 2) {
+			while (samples_above_threshold < SCALE_SAMPLES_PER_SECONDS) {
 				if (scale_read_sample(&scale).value > HANDLE_THRESHOLD) {
 					samples_above_threshold++;
 				} else {
@@ -40,18 +36,19 @@ int main() {
 
 			scale_zero(&scale);
 
-			scale.cutoff = 0.5;
-			scale.last_sample.value = 0;
-			static sample_t buff[LINEAR_ESTIMATOR_BUFF_SIZE] = {0};
-			struct linear_fitting_estimator estimator = {0};
-			linear_fitting_estimator_init(&estimator, buff, ARRAY_SIZE(buff));
-			while (!linear_fitting_estimator_is_saturated(&estimator)) {
-				linear_fitting_estimator_feed(&estimator, scale_read_sample(&scale));
-			}
-			while (linear_fitting_estimator_feed(&estimator, scale_read_sample(&scale)).value < TARGET_COFFEE_WEIGHT) {
-				uint64_t time_to_stop = absolute_time_diff_us(
-					get_absolute_time(), get_estimated_time_until_value(&estimator, TARGET_COFFEE_WEIGHT));
-				printf("estimate %llu.%llu\n", time_to_stop / 1000000, time_to_stop % 1000000);
+			static sample_t samples_buff[LINEAR_ESTIMATOR_BUFF_SIZE] = {0};
+			static sample_t weights_buff[LINEAR_ESTIMATOR_BUFF_SIZE] = {0};
+			struct linear_fitting_estimator weight_estimator = {0};
+			struct linear_fitting_estimator time_estimator = {0};
+			linear_fitting_estimator_init(&weight_estimator, samples_buff, ARRAY_SIZE(samples_buff));
+			linear_fitting_estimator_init(&time_estimator, weights_buff, ARRAY_SIZE(weights_buff));
+			sample_t weight = {0};
+			while (!linear_fitting_estimator_is_saturated(&time_estimator) || weight.value < TARGET_COFFEE_WEIGHT) {
+				weight = linear_fitting_estimator_feed(&weight_estimator, scale_read_sample(&scale));
+
+				linear_fitting_estimator_feed(&time_estimator, weight);
+				uint64_t time_left = get_estimated_time_until_value(&time_estimator, TARGET_COFFEE_WEIGHT);
+				printf("time left %lld.%lld\n", US_GET_SEC(time_left), US_GET_MSEC(time_left));
 			}
 
 			printf("DONE! waiting for handle to be removed\n");
