@@ -10,8 +10,9 @@
 #define TARGET_COFFEE_WEIGHT	   (12)
 #define HANDLE_THRESHOLD		   (HANDLE_WEIGHT / 2)
 #define LINEAR_ESTIMATOR_BUFF_SIZE (100)
-#define US_GET_SEC(val)				   ((val) / 1000000)
-#define US_GET_MSEC(val) ((val) * 1000 / 1000000)
+
+#define US_GET_SEC(val)			   ((val) / 1000000)
+#define US_GET_MSEC(val)		   ((val)*1000 / 1000000)
 
 int main() {
 	stdio_init_all();
