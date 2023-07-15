@@ -3,7 +3,7 @@
 #include <pico/stdlib.h>
 #include <stdlib.h>
 
-#define QSORT_MAX_SIZE (100)
+#define QSORT_MAX_SIZE (100) // arbitrary value
 
 int sample_compare(const void *a, const void *b) {
 	sample_t sample_a = *(const sample_t *)a;

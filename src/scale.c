@@ -1,20 +1,24 @@
 #include "scale.h"
 
+#include <mignon-grind-by-weight/defs.h>
+
 #include <pico/stdlib.h>
 #include <common.h>
 #include <e4c_lite.h>
 #include <hx711.h>
 #include <stdio.h>
 
+#include "config.h"
 #include "estimators/linear_fitting.h"
 #include "estimators/median.h"
 
-#define SCALE_MIN_THRESHOLD		(30)
-#define SCALE_ZERO_SAMPLE_COUNT (SCALE_SAMPLES_PER_SECONDS / 2)
+#ifndef HX711_CLK_PIN
+#define HX711_CLK_PIN (14)
+#endif
 
-#define HX711_CLK_PIN	 (14)
-#define HX711_DT_PIN	 (15)
-#define HX711_MULTIPLIER (-0.009422787707787109)
+#ifndef HX711_DT_PIN
+#define HX711_DT_PIN (15)
+#endif
 
 E4C_DEFINE_EXCEPTION(ObjectRemovedFromScaleException, "object removed from scale", RuntimeException);
 
@@ -23,9 +27,12 @@ static sample_t scale_read_raw_sample(struct scale *scale) {
 }
 
 void scale_zero(struct scale *scale) {
-	static sample_t buff[SCALE_ZERO_SAMPLE_COUNT] = {0};
+	static sample_t buff[MAX_SAMPLES_BUFF_LEN] = {0};
 	struct median_estimator median_estimator = {0};
-	median_estimator_init(&median_estimator, buff, ARRAY_SIZE(buff));
+
+	assert(read_config()->scale_zero_sample_count <= ARRAY_SIZE(buff));
+	median_estimator_init(&median_estimator, buff, read_config()->scale_zero_sample_count);
+
 	while (!median_estimator_is_saturated(&median_estimator)) {
 		scale->base = median_estimator_feed(&median_estimator, scale_read_raw_sample(scale)).value;
 	}
@@ -35,7 +42,7 @@ sample_t scale_read_sample(struct scale *scale) {
 	sample_t raw_sample = scale_read_raw_sample(scale);
 	sample_t sample = {.value = (raw_sample.value - scale->base) * scale->multiplier, .time = raw_sample.time};
 	printf("sample %fg\n", sample.value);
-	if (sample.value < -SCALE_MIN_THRESHOLD) {
+	if (sample.value < read_config()->scale_object_lifted_off_threshold) {
 		E4C_THROW(ObjectRemovedFromScaleException, "object removed from scale after zeroing");
 	}
 	return sample;
@@ -60,5 +67,5 @@ void scale_init(struct scale *scale) {
 
 	scale_zero(scale);
 
-	scale->multiplier = HX711_MULTIPLIER;
+	scale->multiplier = read_config()->scale_to_grams_multiplier;
 }

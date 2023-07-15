@@ -8,8 +8,6 @@
 
 E4C_DECLARE_EXCEPTION(ObjectRemovedFromScaleException);
 
-#define SCALE_SAMPLES_PER_SECONDS (80)
-
 struct scale {
 	hx711_t hx;
 	hx711_config_t hxcfg;
