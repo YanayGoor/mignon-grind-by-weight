@@ -2,6 +2,8 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/deps/exceptions4c" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/deps/hx711-pico-c" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/../pico/pico-sdk" vcs="Git" />
   </component>
 </project>

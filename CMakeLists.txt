@@ -19,13 +19,13 @@ add_executable(mignon-grind-by-weight
     deps/hx711-pico-c/src/hx711.c
     deps/hx711-pico-c/src/util.c
     src/sample_buffer/sample_buffer.c
-    src/scale.c)
+    src/scale.c src/config.c src/config.h include/mignon-grind-by-weight/defs.h)
 
 target_include_directories(mignon-grind-by-weight PRIVATE deps/)
 target_include_directories(mignon-grind-by-weight PRIVATE deps/exceptions4c/lite/src/)
 target_include_directories(mignon-grind-by-weight PRIVATE deps/hx711-pico-c/include)
 target_include_directories(mignon-grind-by-weight PRIVATE include/)
 
-target_link_libraries(mignon-grind-by-weight pico_stdlib hardware_dma hardware_pio hardware_i2c)
+target_link_libraries(mignon-grind-by-weight pico_stdlib hardware_dma hardware_pio hardware_i2c hardware_flash)
 
 pico_add_extra_outputs(mignon-grind-by-weight)
