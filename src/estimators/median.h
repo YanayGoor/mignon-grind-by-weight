@@ -5,7 +5,7 @@
 
 #include <pico/stdlib.h>
 
-#include "../sample_buffer/sample_buffer.h"
+#include "sample_buffer/sample_buffer.h"
 
 struct median_estimator {
 	struct sample_buffer sample_buffer;

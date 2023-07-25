@@ -8,6 +8,7 @@
 #include "estimators/linear_fitting.h"
 #include "estimators/median.h"
 #include "scale.h"
+#include "user_interface/button.h"
 
 #define US_GET_SEC(val)	 ((val) / 1000000)
 #define US_GET_MSEC(val) ((val)*1000 / 1000000)
@@ -53,11 +54,37 @@ uint64_t main_stage_get_estimated_time_to_target_weight(struct main_stage *main_
 	return get_estimated_time_until_value(&main_stage->time_estimator, target_weight);
 }
 
+#define BUTTON_GPIO (3)
+
+void on_button_pressed(void *bla) {
+	printf("button %d pressed!\n", *(uint *)bla);
+}
+void on_button_long_pressed(void *bla) {
+	printf("button %d long pressed!\n", *(uint *)bla);
+}
+
+void on_button_double_pressed(void *bla) {
+	printf("button %d double pressed!\n", *(uint *)bla);
+}
+
 int main() {
 	stdio_init_all();
 
 	struct scale scale = {0};
 	scale_init(&scale);
+
+	struct button button = {0};
+	uint button_idx = 1;
+	button_init(&button, BUTTON_GPIO, on_button_pressed, on_button_double_pressed, on_button_long_pressed, &button_idx);
+	struct button button2 = {0};
+	uint button_idx2 = 2;
+	button_init(&button2, BUTTON_GPIO + 1, on_button_pressed, on_button_double_pressed, on_button_long_pressed,
+				&button_idx2);
+
+	while (true) {
+		button_update(&button);
+		button_update(&button2);
+	}
 
 	while (true) {
 		E4C_TRY {

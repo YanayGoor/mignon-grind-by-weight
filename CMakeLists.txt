@@ -18,7 +18,8 @@ add_executable(mignon-grind-by-weight
     deps/hx711-pico-c/src/common.c
     deps/hx711-pico-c/src/hx711.c
     deps/hx711-pico-c/src/util.c
-    src/sample_buffer/sample_buffer.c
+    src/estimators/sample_buffer/sample_buffer.c
+    src/user_interface/button.c
     src/scale.c src/config.c src/config.h include/mignon-grind-by-weight/defs.h)
 
 target_include_directories(mignon-grind-by-weight PRIVATE deps/)
