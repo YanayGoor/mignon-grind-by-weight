@@ -6,7 +6,6 @@
 
 #include "config.h"
 #include "estimators/linear_fitting.h"
-#include "estimators/median.h"
 #include "scale.h"
 #include "user_interface/button.h"
 
