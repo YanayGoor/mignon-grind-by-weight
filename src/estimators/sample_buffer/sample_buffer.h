@@ -1,11 +1,12 @@
 #ifndef MIGNON_GRIND_BY_WEIGHT_SAMPLE_BUFFER_H
 #define MIGNON_GRIND_BY_WEIGHT_SAMPLE_BUFFER_H
 
+#include <exceptions4c/lite/src/e4c_lite.h>
+
+#include <mignon-grind-by-weight/types.h>
+
 #include <memory.h>
 #include <stdlib.h>
-
-#include "exceptions4c/lite/src/e4c_lite.h"
-#include "mignon-grind-by-weight/types.h"
 
 E4C_DECLARE_EXCEPTION(OutOfBoundException);
 

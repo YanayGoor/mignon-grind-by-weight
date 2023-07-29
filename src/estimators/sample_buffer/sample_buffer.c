@@ -1,9 +1,10 @@
 #include "sample_buffer.h"
 
-#include <memory.h>
+#include <exceptions4c/lite/src/e4c_lite.h>
 
-#include "exceptions4c/lite/src/e4c_lite.h"
-#include "mignon-grind-by-weight/types.h"
+#include <mignon-grind-by-weight/types.h>
+
+#include <memory.h>
 
 E4C_DEFINE_EXCEPTION(OutOfBoundException, "index out of bounds", RuntimeException);
 

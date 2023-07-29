@@ -82,16 +82,14 @@ int main() {
 				&button_idx2);
 
 	while (true) {
-		button_update(&button);
-		button_update(&button2);
-	}
-
-	while (true) {
 		E4C_TRY {
 			scale_zero(&scale);
 
 			uint samples_within_range = 0;
 			while (samples_within_range < read_config()->handle_detection_sample_count) {
+				button_update(&button);
+				button_update(&button2);
+
 				if (is_sample_within_handle_range(scale_read_sample(&scale))) {
 					samples_within_range++;
 				} else {
@@ -114,11 +112,17 @@ int main() {
 			// we want to make sure the estimators are saturated, otherwise they might give us bad estimates that might
 			// stop the main stage prematurely.
 			while (main_stage_is_saturated(&main_stage)) {
+				button_update(&button);
+				button_update(&button2);
+
 				main_stage_feed_sample(&main_stage, scale_read_sample(&scale));
 			}
 
 			sample_t estimated_weight = main_stage_feed_sample(&main_stage, scale_read_sample(&scale));
 			while (estimated_weight.value < read_config()->target_coffee_weight) {
+				button_update(&button);
+				button_update(&button2);
+
 				estimated_weight = main_stage_feed_sample(&main_stage, scale_read_sample(&scale));
 				uint64_t time_left =
 					main_stage_get_estimated_time_to_target_weight(&main_stage, read_config()->target_coffee_weight);
@@ -131,6 +135,9 @@ int main() {
 			scale_zero(&scale);
 
 			while (true) {
+				button_update(&button);
+				button_update(&button2);
+
 				scale_read_sample(&scale);
 			}
 		}
