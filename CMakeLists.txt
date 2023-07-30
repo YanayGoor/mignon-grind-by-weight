@@ -20,7 +20,7 @@ add_executable(mignon-grind-by-weight
     deps/hx711-pico-c/src/util.c
     src/estimators/sample_buffer/sample_buffer.c
     src/user_interface/button.c
-    src/scale.c src/config.c src/config.h include/mignon-grind-by-weight/defs.h)
+    src/scale.c src/config.c src/config.h include/mignon-grind-by-weight/defs.h src/user_interface/app.c src/user_interface/app.h)
 
 target_include_directories(mignon-grind-by-weight PRIVATE deps/)
 target_include_directories(mignon-grind-by-weight PRIVATE deps/exceptions4c/lite/src/)

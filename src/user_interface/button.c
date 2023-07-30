@@ -69,16 +69,16 @@ void button_update(struct button *button) {
 		button->state.prev_time_unpressed > DOUBLE_CLICK_UNPRESSED_MIN_US &&
 		button->state.prev_time_unpressed < DOUBLE_CLICK_UNPRESSED_MAX_US &&
 		button->state.time_pressed > DOUBLE_CLICK_MIN_US && !pressed) {
-		button->on_double_click(button->user_data);
+		if (button->on_double_click != NULL) button->on_double_click(button->user_data);
 		// we don't want 3 clicks to register as two double clicks.
 		button_clear_state(button);
 		button->state.cooldown_until = delayed_by_us(get_absolute_time(), DOUBLE_CLICK_COOLDOWN_US);
 	} else if (button->state.time_pressed > LONG_CLICK_MIN_US && !button->state.long_press_registered) {
 		button->state.long_press_registered = true;
 		button->state.cooldown_until = delayed_by_us(get_absolute_time(), LONG_CLICK_COOLDOWN_US);
-		button->on_long_click(button->user_data);
+		if (button->on_double_click != NULL) button->on_long_click(button->user_data);
 	} else if (button->state.time_pressed > CLICK_MIN_US && !button->state.long_press_registered && !pressed) {
-		button->on_click(button->user_data);
+		if (button->on_click != NULL) button->on_click(button->user_data);
 	} else if (button->state.long_press_registered && !pressed) {
 		button->state.long_press_registered = false;
 	}
