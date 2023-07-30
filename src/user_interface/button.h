@@ -8,6 +8,9 @@ typedef void(button_callback_t)(void *user_data);
 struct button {
 	struct {
 		absolute_time_t updated_at;
+		absolute_time_t cooldown_until;
+
+		bool long_press_registered;
 
 		bool is_pressed;
 		bool prev_is_pressed;
@@ -15,7 +18,6 @@ struct button {
 		uint64_t time_unpressed;
 		uint64_t prev_time_pressed;
 		uint64_t prev_time_unpressed;
-		uint64_t cooldown;
 	} state;
 
 	uint gpio_idx;
