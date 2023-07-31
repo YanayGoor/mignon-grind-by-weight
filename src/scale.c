@@ -41,7 +41,7 @@ void scale_zero(struct scale *scale) {
 sample_t scale_read_sample(struct scale *scale) {
 	sample_t raw_sample = scale_read_raw_sample(scale);
 	sample_t sample = {.value = (raw_sample.value - scale->base) * scale->multiplier, .time = raw_sample.time};
-	printf("sample %fg\n", sample.value);
+	// printf("sample %fg\n", sample.value);
 	if (sample.value < read_config()->scale_object_lifted_off_threshold) {
 		E4C_THROW(ObjectRemovedFromScaleException, "object removed from scale after zeroing");
 	}

@@ -8,7 +8,7 @@ struct __attribute__((__packed__)) config {
 	uint32_t handle_detection_sample_count;
 	uint32_t handle_weight;
 	uint32_t handle_weight_range;
-	uint32_t target_coffee_weight;
+	float target_coffee_weight;
 	uint32_t linear_estimator_sample_count;
 	float scale_object_lifted_off_threshold;
 	uint32_t scale_zero_sample_count;

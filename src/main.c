@@ -6,7 +6,9 @@
 
 #include "config.h"
 #include "estimators/linear_fitting.h"
+#include "pages/main_page.h"
 #include "scale.h"
+#include "user_interface/app.h"
 #include "user_interface/button.h"
 
 #define US_GET_SEC(val)	 ((val) / 1000000)
@@ -53,32 +55,17 @@ uint64_t main_stage_get_estimated_time_to_target_weight(struct main_stage *main_
 	return get_estimated_time_until_value(&main_stage->time_estimator, target_weight);
 }
 
-#define BUTTON_GPIO (3)
-
-void on_button_pressed(void *bla) {
-	printf("button %d pressed!\n", *(uint *)bla);
-}
-void on_button_long_pressed(void *bla) {
-	printf("button %d long pressed!\n", *(uint *)bla);
-}
-
-void on_button_double_pressed(void *bla) {
-	printf("button %d double pressed!\n", *(uint *)bla);
-}
-
 int main() {
 	stdio_init_all();
 
 	struct scale scale = {0};
 	scale_init(&scale);
 
-	struct button button = {0};
-	uint button_idx = 1;
-	button_init(&button, BUTTON_GPIO, on_button_pressed, on_button_double_pressed, on_button_long_pressed, &button_idx);
-	struct button button2 = {0};
-	uint button_idx2 = 2;
-	button_init(&button2, BUTTON_GPIO + 1, on_button_pressed, on_button_double_pressed, on_button_long_pressed,
-				&button_idx2);
+	struct app app = {0};
+	app_init(&app);
+
+	main_page_init();
+	app_add_page(&app, &main_page);
 
 	while (true) {
 		E4C_TRY {
@@ -86,8 +73,7 @@ int main() {
 
 			uint samples_within_range = 0;
 			while (samples_within_range < read_config()->handle_detection_sample_count) {
-				button_update(&button);
-				button_update(&button2);
+				app_update(&app);
 
 				if (is_sample_within_handle_range(scale_read_sample(&scale))) {
 					samples_within_range++;
@@ -111,16 +97,13 @@ int main() {
 			// we want to make sure the estimators are saturated, otherwise they might give us bad estimates that might
 			// stop the main stage prematurely.
 			while (main_stage_is_saturated(&main_stage)) {
-				button_update(&button);
-				button_update(&button2);
-
+				app_update(&app);
 				main_stage_feed_sample(&main_stage, scale_read_sample(&scale));
 			}
 
 			sample_t estimated_weight = main_stage_feed_sample(&main_stage, scale_read_sample(&scale));
 			while (estimated_weight.value < read_config()->target_coffee_weight) {
-				button_update(&button);
-				button_update(&button2);
+				app_update(&app);
 
 				estimated_weight = main_stage_feed_sample(&main_stage, scale_read_sample(&scale));
 				uint64_t time_left =
@@ -134,9 +117,7 @@ int main() {
 			scale_zero(&scale);
 
 			while (true) {
-				button_update(&button);
-				button_update(&button2);
-
+				app_update(&app);
 				scale_read_sample(&scale);
 			}
 		}

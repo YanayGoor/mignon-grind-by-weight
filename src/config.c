@@ -10,6 +10,7 @@
 
 #define CONFIG_MAGIC_LEN (21)
 #define MAGIC			 ("mignongrindbyweight2")
+#define VERSION			 1
 
 #define SLOT_SIZE ((sizeof(struct slot) / FLASH_SECTOR_SIZE + 1) * FLASH_SECTOR_SIZE)
 
@@ -21,6 +22,7 @@
 
 struct slot {
 	uint8_t magic[CONFIG_MAGIC_LEN]; /* to make sure the flash is really initialized and not just garbage */
+	uint8_t version;
 	struct config config;
 };
 
@@ -67,7 +69,7 @@ static void program_slot(struct config *config, uint idx) {
 	assert(idx < NUM_SLOTS);
 
 	// this should only be called on empty slots, so no need to erase
-	struct slot slot = {.magic = MAGIC, .config = *config};
+	struct slot slot = {.magic = MAGIC, .version = VERSION, .config = *config};
 	program_slot_by_idx(&slot, idx);
 }
 
@@ -81,7 +83,7 @@ static bool is_slot_free(const struct slot *slot) {
 }
 
 static bool is_slot_used(const struct slot *slot) {
-	return !memcmp(&slot->magic, MAGIC, sizeof(slot->magic));
+	return !memcmp(&slot->magic, MAGIC, sizeof(slot->magic)) && slot->version == VERSION;
 }
 
 const struct config *read_config() {

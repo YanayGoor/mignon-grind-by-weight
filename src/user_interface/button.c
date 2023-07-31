@@ -10,7 +10,7 @@
 #define DOUBLE_CLICK_COOLDOWN_US	  (300000)
 #define DOUBLE_CLICK_MIN_US			  (30000)
 #define DOUBLE_CLICK_UNPRESSED_MIN_US (40000)
-#define DOUBLE_CLICK_UNPRESSED_MAX_US (100000)
+#define DOUBLE_CLICK_UNPRESSED_MAX_US (120000)
 
 static void button_clear_state(struct button *button) {
 	button->state.is_pressed = false;
