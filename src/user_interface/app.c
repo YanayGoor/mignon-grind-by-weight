@@ -8,32 +8,44 @@ static struct page *get_active_page(struct app *app) {
 
 static void app_on_left_click(void *user_data) {
 	struct app *app = (struct app *)user_data;
-	get_active_page(app)->on_left_click(get_active_page(app)->user_data);
+	if (get_active_page(app)->on_left_click) {
+		get_active_page(app)->on_left_click(get_active_page(app)->user_data);
+	}
 }
 
 static void app_on_left_double_click(void *user_data) {
 	struct app *app = (struct app *)user_data;
-	get_active_page(app)->on_left_double_click(get_active_page(app)->user_data);
+	if (get_active_page(app)->on_left_double_click) {
+		get_active_page(app)->on_left_double_click(get_active_page(app)->user_data);
+	}
 }
 
 static void app_on_left_long_click(void *user_data) {
 	struct app *app = (struct app *)user_data;
-	get_active_page(app)->on_left_long_click(get_active_page(app)->user_data);
+	if (get_active_page(app)->on_left_long_click) {
+		get_active_page(app)->on_left_long_click(get_active_page(app)->user_data);
+	}
 }
 
 static void app_on_right_click(void *user_data) {
 	struct app *app = (struct app *)user_data;
-	get_active_page(app)->on_right_click(get_active_page(app)->user_data);
+	if (get_active_page(app)->on_right_click) {
+		get_active_page(app)->on_right_click(get_active_page(app)->user_data);
+	}
 }
 
 static void app_on_right_double_click(void *user_data) {
 	struct app *app = (struct app *)user_data;
-	get_active_page(app)->on_right_double_click(get_active_page(app)->user_data);
+	if (get_active_page(app)->on_right_double_click) {
+		get_active_page(app)->on_right_double_click(get_active_page(app)->user_data);
+	}
 }
 
 static void app_on_right_long_click(void *user_data) {
 	struct app *app = (struct app *)user_data;
-	get_active_page(app)->on_right_long_click(get_active_page(app)->user_data);
+	if (get_active_page(app)->on_right_long_click) {
+		get_active_page(app)->on_right_long_click(get_active_page(app)->user_data);
+	}
 }
 
 void app_init(struct app *app) {
