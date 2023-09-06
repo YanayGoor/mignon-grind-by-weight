@@ -18,16 +18,22 @@ add_executable(mignon-grind-by-weight
     deps/hx711-pico-c/src/common.c
     deps/hx711-pico-c/src/hx711.c
     deps/hx711-pico-c/src/util.c
+    deps/sh1107-pico-c/src/sh1107.c
+    deps/sh1107-pico-c/src/sh1107_spi.c
+    deps/sh1107-pico-c/src/fonts/arial.c
+    deps/sh1107-pico-c/src/font.c
     src/estimators/sample_buffer/sample_buffer.c
     src/user_interface/button.c
     src/pages/main_page.c
-    src/scale.c src/config.c src/config.h include/mignon-grind-by-weight/defs.h src/user_interface/app.c src/user_interface/app.h)
+    src/user_interface/display_sh1107.c
+    src/scale.c src/config.c src/config.h include/mignon-grind-by-weight/defs.h src/user_interface/app.c src/user_interface/app.h src/user_interface/display.h)
 
 target_include_directories(mignon-grind-by-weight PRIVATE deps/)
 target_include_directories(mignon-grind-by-weight PRIVATE deps/exceptions4c/lite/src/)
 target_include_directories(mignon-grind-by-weight PRIVATE deps/hx711-pico-c/include)
+target_include_directories(mignon-grind-by-weight PRIVATE deps/sh1107-pico-c/include)
 target_include_directories(mignon-grind-by-weight PRIVATE include/)
 
-target_link_libraries(mignon-grind-by-weight pico_stdlib hardware_dma hardware_pio hardware_i2c hardware_flash)
+target_link_libraries(mignon-grind-by-weight pico_stdlib hardware_dma hardware_pio hardware_spi hardware_flash)
 
 pico_add_extra_outputs(mignon-grind-by-weight)

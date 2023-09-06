@@ -2,10 +2,11 @@
 #define MIGNON_GRIND_BY_WEIGHT_APP_H
 
 #include "button.h"
+#include "display.h"
 
 #define MAX_PAGES (5)
 
-typedef void(update_callback_t)(void *user_data);
+typedef void(update_callback_t)(void *user_data, struct display_hw *display_hw, void *display_hw_data);
 
 struct page {
 	button_callback_t *on_left_click;
@@ -23,9 +24,11 @@ struct app {
 	struct button right_button;
 	size_t num_pages;
 	struct page pages[MAX_PAGES];
+	struct display_hw *display_hw;
+	void *display_hw_data;
 };
 
-void app_init(struct app *);
+void app_init(struct app *, struct display_hw *, void *);
 void app_update(struct app *);
 void app_add_page(struct app *, struct page *);
 void app_pop_page(struct app *);

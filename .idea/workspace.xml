@@ -33,8 +33,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e640c18e-2d8b-4039-8b81-067471bc6938" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/pages/main_page.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/main_page.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/deps/sh1107-pico-c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/user_interface/display.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/user_interface/display_sh1107.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/user_interface/display_sh1107.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitmodules" beforeDir="false" afterPath="$PROJECT_DIR$/.gitmodules" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/deps/exceptions4c" beforeDir="false" afterPath="$PROJECT_DIR$/deps/exceptions4c" afterDir="false" />
@@ -173,14 +176,10 @@
       <change beforePath="$PROJECT_DIR$/deps/hx711-pico-c/src/hx711_multi.c" beforeDir="false" afterPath="$PROJECT_DIR$/deps/hx711-pico-c/src/hx711_multi.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/deps/hx711-pico-c/src/util.c" beforeDir="false" afterPath="$PROJECT_DIR$/deps/hx711-pico-c/src/util.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/deps/hx711-pico-c/tests/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/deps/hx711-pico-c/tests/main.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/include/mignon-grind-by-weight/defs.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/mignon-grind-by-weight/defs.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/config.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/config.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/config.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/config.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scale.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/scale.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/main_page.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/main_page.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/user_interface/app.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/user_interface/app.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/user_interface/app.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/user_interface/app.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/user_interface/button.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/user_interface/button.c" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -227,7 +226,7 @@
     "cf.first.check.clang-format": "false",
     "cidr.known.project.marker": "true",
     "git-widget-placeholder": "feature/persistent-config",
-    "last_opened_file_path": "/home/yanay/mignon-grind-by-weight/src",
+    "last_opened_file_path": "/home/yanay/mignon-grind-by-weight/src/user_interface",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -238,6 +237,7 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/user_interface" />
       <recent name="$PROJECT_DIR$/src" />
       <recent name="$PROJECT_DIR$/include" />
       <recent name="$PROJECT_DIR$/src/estimators" />
@@ -358,15 +358,11 @@
     </option>
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/src/config.c</url>
-          <line>97</line>
-          <option name="timeStamp" value="9" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <watches-manager>
+      <configuration name="com.jetbrains.cidr.embedded.openocd.conf.type">
+        <watch expression="buff[9]" />
+      </configuration>
+    </watches-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
