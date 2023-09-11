@@ -9,6 +9,7 @@
 
 #include "config.h"
 #include "estimators/linear_fitting.h"
+#include "pages/grinding_page.h"
 #include "pages/main_page.h"
 #include "scale.h"
 #include "user_interface/app.h"
@@ -85,6 +86,15 @@ int main() {
 
 	main_page_init();
 	app_add_page(&app, &main_page);
+
+	absolute_time_t time = delayed_by_ms(get_absolute_time(), 5000);
+
+	while (!time_reached(time)) {
+		app_update(&app);
+	}
+
+	grinding_page_init();
+	app_add_page(&app, &grinding_page);
 
 	while (true) {
 		app_update(&app);

@@ -9,6 +9,19 @@ project(mignon-grind-by-weight)
 # initialize the Raspberry Pi Pico SDK
 pico_sdk_init()
 
+list(APPEND FONT_FILES deps/sh1107-pico-c/include/fonts/arial.ttf)
+
+foreach (font_file ${FONT_FILES})
+    get_filename_component(font_name ${font_file} NAME_WE)
+    add_custom_command(
+            OUTPUT ${CMAKE_CURRENT_SOURCE_DIR}/deps/sh1107-pico-c/include/fonts/${font_name}.h
+                   ${CMAKE_CURRENT_SOURCE_DIR}/deps/sh1107-pico-c/src/fonts/${font_name}.c
+            COMMAND python3 ${CMAKE_CURRENT_SOURCE_DIR}/deps/sh1107-pico-c/scripts/create_font.py
+            DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/deps/sh1107-pico-c/scripts/create_font.py ${font_file}
+            VERBATIM
+    )
+endforeach ()
+
 # rest of your project
 add_executable(mignon-grind-by-weight
     src/main.c
@@ -25,6 +38,7 @@ add_executable(mignon-grind-by-weight
     src/estimators/sample_buffer/sample_buffer.c
     src/user_interface/button.c
     src/pages/main_page.c
+    src/pages/grinding_page.c
     src/user_interface/display_sh1107.c
     src/scale.c src/config.c src/config.h include/mignon-grind-by-weight/defs.h src/user_interface/app.c src/user_interface/app.h src/user_interface/display.h)
 

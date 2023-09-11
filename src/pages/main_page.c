@@ -9,21 +9,21 @@
 
 #define MAIN_PAGE_SAVE_AFTER_MS (5000)
 #define MAIN_PAGE_SMALL_STEP	(0.1)
-#define MAIN_PAGE_BIG_STEP		(1 - MAIN_PAGE_SMALL_STEP)
+#define MAIN_PAGE_BIG_STEP		(1)
 
 struct main_page_state {
 	struct config config;
 	absolute_time_t save_at;
 };
 
-struct main_page_state state = {0};
+static struct main_page_state state = {0};
 
 void app_on_left_click(void *user_data) {
 	state.config.target_coffee_weight -= MAIN_PAGE_SMALL_STEP;
 	state.save_at = delayed_by_ms(get_absolute_time(), MAIN_PAGE_SAVE_AFTER_MS);
 }
 
-void app_on_left_double_click(void *user_data) {
+void app_on_left_long_click(void *user_data) {
 	state.config.target_coffee_weight -= MAIN_PAGE_BIG_STEP;
 	state.save_at = delayed_by_ms(get_absolute_time(), MAIN_PAGE_SAVE_AFTER_MS);
 }
@@ -33,7 +33,7 @@ void app_on_right_click(void *user_data) {
 	state.save_at = delayed_by_ms(get_absolute_time(), MAIN_PAGE_SAVE_AFTER_MS);
 }
 
-void app_on_right_double_click(void *user_data) {
+void app_on_right_long_click(void *user_data) {
 	state.config.target_coffee_weight += MAIN_PAGE_BIG_STEP;
 	state.save_at = delayed_by_ms(get_absolute_time(), MAIN_PAGE_SAVE_AFTER_MS);
 }
@@ -45,6 +45,7 @@ void main_page_update(void *user_data, struct display_hw *display_hw, void *disp
 	}
 	char buff[100];
 	sprintf(buff, "%.1fg", state.config.target_coffee_weight);
+	display_hw->display_fill(display_hw_data, 0, 0, 128, 128, 0);
 	display_hw->display_text(display_hw_data, buff, 64 - 16, 64, 1, 32, &font_arial, text_align_center);
 	display_hw->display_update(display_hw_data);
 }
@@ -56,11 +57,11 @@ void main_page_init() {
 
 struct page main_page = {
 	.on_left_click = app_on_left_click,
-	.on_left_double_click = app_on_left_double_click,
-	.on_left_long_click = NULL,
+	.on_left_long_click = app_on_left_long_click,
+	.on_left_double_click = NULL,
 	.on_right_click = app_on_right_click,
-	.on_right_double_click = app_on_right_double_click,
-	.on_right_long_click = NULL,
+	.on_right_long_click = app_on_right_long_click,
+	.on_right_double_click = NULL,
 	.update = main_page_update,
 	.user_data = NULL,
 };
