@@ -8,7 +8,8 @@
 #include <stdlib.h>
 
 #include "../config.h"
-#include "fonts/arial.h"
+#include "../widgets/target_weight_text.h"
+#include "fonts/product_sans_bold.h"
 
 #define PARTICLE_PADDING (0)
 #define PARTICLE_SIZE	 (2)
@@ -58,22 +59,18 @@ void grinding_page_update(void *user_data, struct display_hw *display_hw, void *
 		display_hw->display_fill(display_hw_data, particle->y, particle->x, PARTICLE_SIZE, PARTICLE_SIZE, 1);
 	}
 	display_hw->display_fill(display_hw_data, 128 - height, 0, 128, height - prev_height, 1);
+
 	state.prev_weight = state.curr_weight;
 	state.curr_weight += 0.01;
+
 	if (!is_nil_time(state.finish_time) && time_reached(delayed_by_ms(state.finish_time, 400))) {
-		char buff[100];
-		sprintf(buff, "%.1fg", state.config.target_coffee_weight);
-		display_hw->display_text(display_hw_data, buff, 64 - 16, 64, 0, 32, &font_arial, text_align_center);
+		target_weight_text_draw(display_hw, display_hw_data, state.config.target_coffee_weight, 0);
 	}
 	if (!is_nil_time(state.finish_time) && time_reached(delayed_by_ms(state.finish_time, 500))) {
-		char buff[100];
-		sprintf(buff, "%.1fg", state.config.target_coffee_weight);
-		display_hw->display_text(display_hw_data, buff, 64 - 16, 64, 1, 32, &font_arial, text_align_center);
+		target_weight_text_draw(display_hw, display_hw_data, state.config.target_coffee_weight, 1);
 	}
 	if (!is_nil_time(state.finish_time) && time_reached(delayed_by_ms(state.finish_time, 600))) {
-		char buff[100];
-		sprintf(buff, "%.1fg", state.config.target_coffee_weight);
-		display_hw->display_text(display_hw_data, buff, 64 - 16, 64, 0, 32, &font_arial, text_align_center);
+		target_weight_text_draw(display_hw, display_hw_data, state.config.target_coffee_weight, 0);
 	}
 	display_hw->display_update(display_hw_data);
 }

@@ -5,7 +5,7 @@
 #include <pico/time.h>
 
 #include "../config.h"
-#include "fonts/arial.h"
+#include "../widgets/target_weight_text.h"
 
 #define MAIN_PAGE_SAVE_AFTER_MS (5000)
 #define MAIN_PAGE_SMALL_STEP	(0.1)
@@ -43,10 +43,8 @@ void main_page_update(void *user_data, struct display_hw *display_hw, void *disp
 		save_config(&state.config);
 		state.save_at = nil_time;
 	}
-	char buff[100];
-	sprintf(buff, "%.1fg", state.config.target_coffee_weight);
 	display_hw->display_fill(display_hw_data, 0, 0, 128, 128, 0);
-	display_hw->display_text(display_hw_data, buff, 64 - 16, 64, 1, 32, &font_arial, text_align_center);
+	target_weight_text_draw(display_hw, display_hw_data, state.config.target_coffee_weight, 1);
 	display_hw->display_update(display_hw_data);
 }
 
