@@ -70,24 +70,8 @@ struct sh1107 sh1107 = {0};
 struct app app = {0};
 
 void second_main(void) {
-	main_page_init();
-	app_add_page(&app, &main_page);
-
 	while (true) {
-		absolute_time_t time = delayed_by_ms(get_absolute_time(), 5000);
-		while (!time_reached(time)) {
-			app_update(&app);
-		}
-
-		grinding_page_init();
-		app_add_page(&app, &grinding_page);
-
-		time = delayed_by_ms(get_absolute_time(), 25000);
-		while (!time_reached(time)) {
-			app_update(&app);
-		}
-
-		app_pop_page(&app);
+		app_update(&app);
 	}
 }
 
@@ -102,7 +86,23 @@ int main() {
 
 	app_init(&app, &sh1107_display, &sh1107);
 
+	main_page_init();
+	app_add_page(&app, &main_page);
+
 	multicore_launch_core1(second_main);
+
+	while (true) {
+		absolute_time_t time = delayed_by_ms(get_absolute_time(), 5000);
+		while (!time_reached(time)) {}
+
+		grinding_page_init();
+		app_add_page(&app, &grinding_page);
+
+		time = delayed_by_ms(get_absolute_time(), 25000);
+		while (!time_reached(time)) {}
+
+		app_pop_page(&app);
+	}
 
 	while (true) {
 		E4C_TRY {
@@ -125,6 +125,9 @@ int main() {
 
 			static struct main_stage main_stage = {0};
 			init_main_stage(&main_stage);
+
+			grinding_page_init();
+			app_add_page(&app, &grinding_page);
 
 			// NOTE: when the grinder starts it probably starts slower than it is at the end, so the sample buffer
 			//  should not the values from the start all the way to the end.

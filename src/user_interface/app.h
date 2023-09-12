@@ -1,6 +1,8 @@
 #ifndef MIGNON_GRIND_BY_WEIGHT_APP_H
 #define MIGNON_GRIND_BY_WEIGHT_APP_H
 
+#include <pico/sync.h>
+
 #include "button.h"
 #include "display.h"
 
@@ -24,6 +26,8 @@ struct app {
 	struct button right_button;
 	size_t num_pages;
 	struct page pages[MAX_PAGES];
+	struct page curr_page;
+	critical_section_t page_lock;
 	struct display_hw *display_hw;
 	void *display_hw_data;
 };
