@@ -3,6 +3,7 @@
 
 #include "../config.h"
 #include "../user_interface/app.h"
+#include <pico/time.h>
 
 #define PARTICLE_COUNT (70)
 
