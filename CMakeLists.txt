@@ -9,7 +9,7 @@ project(mignon-grind-by-weight)
 # initialize the Raspberry Pi Pico SDK
 pico_sdk_init()
 
-list(APPEND FONT_FILES deps/sh1107-pico-c/include/fonts/product_sans_bold.ttf)
+list(APPEND FONT_FILES assets/product_sans_bold.ttf)
 
 foreach (font_file ${FONT_FILES})
     get_filename_component(font_name ${font_file} NAME_WE)

@@ -23,21 +23,6 @@
 	for (particle = &(particles)[0]; particle < &(particles)[0] + sizeof(particles) / sizeof((particles)[0]);          \
 		 particle++)
 
-struct coffee_particle {
-	bool initialized;
-	uint x;
-	float y;
-	absolute_time_t last_updated;
-};
-
-struct grinding_page_state {
-	struct config config;
-	float prev_weight;
-	float curr_weight;
-	struct coffee_particle particles[70];
-	absolute_time_t fin_time;
-	absolute_time_t last_particle_created_at;
-};
 
 static struct grinding_page_state state = {0};
 
