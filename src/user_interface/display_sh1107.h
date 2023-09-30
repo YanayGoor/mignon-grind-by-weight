@@ -6,6 +6,6 @@
 
 #include "display.h"
 
-extern struct display_hw sh1107_display;
+extern struct display_type display_type_sh1107;
 
 #endif // MIGNON_GRIND_BY_WEIGHT_DISPLAY_SH1107_H

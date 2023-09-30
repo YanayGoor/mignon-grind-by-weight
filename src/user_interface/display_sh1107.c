@@ -4,7 +4,7 @@
 
 #include "display.h"
 
-struct display_hw sh1107_display = {
+struct display_type display_type_sh1107 = {
 	.display_fill = &sh1107_fill,
 	.display_text = &sh1107_text,
 	.display_update = &sh1107_show,

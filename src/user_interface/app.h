@@ -8,7 +8,7 @@
 
 #define MAX_PAGES (5)
 
-typedef void(update_callback_t)(void *user_data, struct display_hw *display_hw, void *display_hw_data);
+typedef void(update_callback_t)(void *user_data, struct display_type *display_type, void *display);
 
 struct page {
 	button_callback_t *on_left_click;
@@ -28,11 +28,11 @@ struct app {
 	struct page pages[MAX_PAGES];
 	struct page curr_page;
 	critical_section_t page_lock;
-	struct display_hw *display_hw;
-	void *display_hw_data;
+	struct display_type *display_type;
+	void *display;
 };
 
-void app_init(struct app *, struct display_hw *, void *);
+void app_init(struct app *, struct display_type *, void *);
 void app_update(struct app *);
 void app_add_page(struct app *, struct page *);
 void app_pop_page(struct app *);
